@@ -40,13 +40,13 @@ public class MainServiceStack {
 
             student_stack.pop();
             student_stack.pop();
-//            student_stack.pop();
-            student_stack.empty();
+            student_stack.pop();
+//            student_stack.empty();
             System.out.println(student_stack.is_empty());
             System.out.println(student_stack.is_full());
 
 
-//            System.out.println(student_stack.print());
+            System.out.println(student_stack.print());
         }
         catch (Exception e){
             e.printStackTrace();

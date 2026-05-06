@@ -86,12 +86,8 @@ public class MyStack<TType>{
         return this.top_node;
     }
 
-    public String print() throws Exception{
-        if(is_empty()){
-            throw new Exception("Cannot print stack, the stack is empty...");
-        }
-
-        MyNodeS current_node = top();
+    public String print(){
+        MyNodeS current_node = this.top_node;
 
         String stack_values = "Stack Size = " + size();
 
