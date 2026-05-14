@@ -95,7 +95,7 @@ public class MainServiceStack {
                                     syntax_stack.pop();
                                 }
                                 else{
-                                return current_line;
+                                    return current_line;
                                 }
                                 break;
                         }
@@ -109,6 +109,4 @@ public class MainServiceStack {
 
         return -1;
     }
-
-    p
 }

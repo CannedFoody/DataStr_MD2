@@ -5,6 +5,32 @@ public class MyQueue<TType>{
     private MyNodeQ rear_node = null;
     private int size = 0;
 
+//    Getters
+
+    protected MyNodeQ get_front_node(){
+        return this.front_node;
+    }
+
+    protected MyNodeQ get_rear_node(){
+        return this.rear_node;
+    }
+
+    protected void set_rear_node(MyNodeQ rear_node){
+        if(rear_node != null){
+            this.rear_node = rear_node;
+        }
+    }
+
+    protected void set_front_node(MyNodeQ front_node){
+        if(front_node != null){
+            this.front_node = front_node;
+        }
+    }
+
+    protected void set_size(int size){
+        this.size = size;
+    }
+
 //    Again, no need for a constructor since we usually make a blank queue anyway and the Object class has a built-in constructor.
 
     public boolean is_empty(){
@@ -23,18 +49,13 @@ public class MyQueue<TType>{
     }
 
     public int size() throws Exception{
-        if(is_empty()){
-            throw new Exception("Cannot get queue size, the queue is empty.");
-        }
-        else{
-            return this.size;
-        }
+            return size;
     }
 
     public void empty(){
-        this.front_node = null;
-        this.rear_node = null;
-        this.size = 0;
+        front_node = null;
+        rear_node = null;
+        size = 0;
         System.gc();
     }
 
@@ -45,18 +66,18 @@ public class MyQueue<TType>{
 
         MyNodeQ new_node = new MyNodeQ(value);
 
-        if(this.rear_node == null){
-            this.rear_node = new_node;
-            this.front_node = new_node;
+        if(rear_node == null){
+            rear_node = new_node;
+            front_node = new_node;
         }
         else{
-            MyNodeQ temp_node = this.rear_node;
-            this.rear_node = new_node;
-            this.rear_node.set_next_node(temp_node);
-            temp_node.set_previous_node(this.rear_node);
+            MyNodeQ temp_node = front_node;
+            front_node = new_node;
+            front_node.set_previous_node(temp_node);
+            temp_node.set_next_node(front_node);
         }
 
-        this.size += 1;
+        size += 1;
     }
 
     public void dequeue() throws Exception{
@@ -64,29 +85,29 @@ public class MyQueue<TType>{
             throw new Exception("Cannot remove element from an empty queue...");
         }
 
-        if(this.front_node == rear_node){
-            this.front_node = null;
-            this.rear_node = null;
+        if(front_node == rear_node){
+            empty();
+            return;
         }
         else{
-            MyNodeQ temp_node = this.front_node;
-            this.front_node = temp_node.get_previous_node();
-            this.front_node.set_next_node(null);
+            MyNodeQ temp_node = front_node;
+            front_node = temp_node.get_previous_node();
+            front_node.set_next_node(null);
             temp_node.set_previous_node(null);
         }
 
 
         System.gc();
-        this.size -= 1;
+        size -= 1;
     }
 
     public String print(){
-        String print_string = "Queue size: " + this.size;
-        MyNodeQ current_node = this.rear_node;
+        String print_string = "Queue size: " + size;
+        MyNodeQ current_node = front_node;
 
         while(current_node != null){
             print_string = print_string + "\n" + current_node.toString();
-            current_node = current_node.get_next_node();
+            current_node = current_node.get_previous_node();
         }
 
         return print_string;
