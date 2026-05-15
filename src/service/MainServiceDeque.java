@@ -20,7 +20,8 @@ public class MainServiceDeque {
 //            e.printStackTrace();
 //        }
 
-        internet_history();
+//        internet_history();
+        System.out.println(is_palindrome("majonēzi aizēnojam"));
     }
 
     public static void internet_history(){
@@ -59,5 +60,29 @@ public class MainServiceDeque {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static boolean is_palindrome(String value){
+        String forward_string = null;
+        String backward_string = null;
+
+        MyDeque string = new MyDeque();
+        for(int i = 0; i < value.length(); i++){
+            try{
+                string.enqueue(value.charAt(i));
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        forward_string = string.print().replaceAll("\\n|\\s+", "").toLowerCase().trim();
+        backward_string = string.print_b().replaceAll("\\n|\\s+", "").toLowerCase().trim();
+
+        System.out.println(forward_string);
+        System.out.println(backward_string);
+
+
+        return backward_string.equals(forward_string);
     }
 }

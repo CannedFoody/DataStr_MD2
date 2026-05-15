@@ -102,11 +102,11 @@ public class MyQueue<TType>{
     }
 
     public String print(){
-        String print_string = "Queue size: " + size;
+        String print_string = "";
         MyNodeQ current_node = front_node;
 
         while(current_node != null){
-            print_string = print_string + "\n" + current_node.toString();
+            print_string = print_string + "\n" + current_node.get_value();
             current_node = current_node.get_previous_node();
         }
 
