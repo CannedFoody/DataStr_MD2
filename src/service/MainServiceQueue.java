@@ -50,8 +50,22 @@ public class MainServiceQueue {
 //            e.printStackTrace();
 //        }
 
-        call_centre();
+//        call_centre();
+
+        MyQueue funcs = new MyQueue();
+
+        try{
+            funcs.enqueue("func_1");
+            funcs.enqueue("func_2");
+            funcs.enqueue("func_3");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        call_functions(funcs);
     }
+
 // I got the two thread idea from here :
 //    https://stackoverflow.com/questions/57853553/how-can-i-sleep-one-thread-while-the-other-thread-is-running-in-java
 //    https://techvidvan.com/tutorials/java-thread-run-method-with-examples/
@@ -104,5 +118,29 @@ public class MainServiceQueue {
 
         call.start();
         answer.start();
+    }
+
+        public static void call_functions(MyQueue func_queue){
+            try{
+                while(!func_queue.is_empty()){
+                    MainServiceQueue.class.getDeclaredMethod((String) func_queue.top().get_value()).invoke(MainServiceQueue.class);
+                    func_queue.dequeue();
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+    public static void func_1(){
+        System.out.println("I am being called from a stack using invoke and getDeclaredMethod!");
+    }
+
+    public static void func_2(){
+        System.out.println("No way! Me too!");
+    }
+
+    public static void func_3() {
+        System.out.println("We have so much in common! Let's be friends!");
     }
 }

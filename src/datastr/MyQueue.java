@@ -49,7 +49,16 @@ public class MyQueue<TType>{
     }
 
     public int size() throws Exception{
-            return size;
+        return size;
+    }
+
+    public MyNodeQ top() throws Exception{
+        if(is_empty()){
+            throw new Exception("Cannot get top from an empty queue...");
+        }
+        else{
+            return this.front_node;
+        }
     }
 
     public void empty(){

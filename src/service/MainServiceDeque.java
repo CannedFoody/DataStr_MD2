@@ -21,7 +21,7 @@ public class MainServiceDeque {
 //        }
 
 //        internet_history();
-        System.out.println(is_palindrome("majonēzi aizēnojam"));
+//        System.out.println(is_palindrome("majonēzi aizēnojam"));
     }
 
     public static void internet_history(){

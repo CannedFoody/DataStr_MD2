@@ -59,15 +59,15 @@ public class MyStack<TType>{
         }
     }
 
-    public void pop() throws Exception {
+    public MyNodeS pop() throws Exception {
         if(is_empty()){
             throw new Exception("Cannot pop a stack element, the stack is empty...");
         }
+        MyNodeS temp_node = this.top_node;
 
-//        Checks if the top node HAS a node beneath it and if it doesnt that means the top node is the last one in the stack and just gets rid of it.
+
         if(top().get_previous_node() != null) {
-            this.top_node = top_node.get_previous_node();
-            this.top_node.get_next_node().set_previous_node(null);
+            this.top_node = this.top_node.get_previous_node();
             this.top_node.set_next_node(null);
         }
         else{
@@ -76,6 +76,8 @@ public class MyStack<TType>{
 
         this.size -= 1;
         System.gc();
+
+        return temp_node;
     }
 
     public MyNodeS top() throws Exception{
